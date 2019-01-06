@@ -1,0 +1,21 @@
+function myip(){
+  dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/"//g'
+}
+
+function histgrep() {
+  local n_lines=10
+  if [[ "$1" =~ ^[0-9]*$ ]]; then
+    n_lines="$1"
+    shift
+  fi
+  grep --with-filename --line-number "$@" ~/.history | tail -n "$n_lines"
+}
+
+function ipchk() {
+#  echo grep --color -ir $1 /cygdrive/c/Users/bf591ah/Documents/Supported_Tools/STEALTHWATCH/IPAM.txt
+  grep --color -ir $1 /cygdrive/c/Users/bf591ah/Documents/Supported_Tools/STEALTHWATCH/IPAM.txt
+}
+
+export -f histgrep
+export -f ipchk
+export -f myip
