@@ -26,6 +26,8 @@ alias lsd='ls -al | grep ^d'
 alias thist='tail -n 30 ~/.bash_history'
 alias vdir='ls --color=auto --format=long'
 alias whence='type -a'
+alias nonag='sed -i.bak 's/NotFound/Active/g' /usr/share/perl5/PVE/API2/Subscription.pm && systemctl restart pveproxy.service'
+alias cls='clear'
 
 # Setup History the RIGHT way…
 
