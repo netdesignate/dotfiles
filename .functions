@@ -12,7 +12,6 @@ function histgrep() {
 }
 
 function ipchk() {
-#  echo grep --color -ir $1 /cygdrive/c/Users/bf591ah/Documents/Supported_Tools/STEALTHWATCH/IPAM.txt
   grep --color -ir $1 /cygdrive/c/Users/bf591ah/Documents/Supported_Tools/STEALTHWATCH/IPAM.txt
 }
 
