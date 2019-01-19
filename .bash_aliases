@@ -34,25 +34,11 @@ alias cls='clear'
 shopt -s cmdhist
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -n"
-export HISTIGNORE="&:[bf]g:exit:fortune:clear:cl:history:dict *:which *:shred *:man *:apropos *:sudo rm *:sudo cat *:mplayer *:source *:. *:gojo *:mutt"
+export HISTIGNORE="&:[bf]g:exit:fortune:clear:cl:history:dict *:which *:shred *:man *:apropos rm *:mplayer *:source *:. *:gojo *:mutt"
 export HISTCONTROL=erasedups:ignoreboth
 unset HISTFILESIZE
 export HISTSIZE=1000000
 
-function myip(){
-  dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/"//g'
-}
-
-function histgrep() {
-  local n_lines=10
-  if [[ "$1" =~ ^[0-9]*$ ]]; then
-    n_lines="$1"
-    shift
-  fi
-  grep --with-filename --line-number "$@" ~/.history | tail -n "$n_lines"
-}
-
-function ipchk() {
-#  echo grep --color -ir $1 ~/MyFiles/IP_Data.txt
-  grep --color -ir $1 /cygdrive/c/Users/bf591ah/Documents/Supported_Tools/STEALTHWATCH/IPAM.txt
-}
+if [ -f ~/.functions ]; then
+  . ~/.functions
+fi
