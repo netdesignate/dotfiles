@@ -41,6 +41,11 @@ export HISTCONTROL=erasedups:ignoreboth
 unset HISTFILESIZE
 export HISTSIZE=1000000
 
+# change default editor to vi:
+
+export EDITOR='vi'
+export VISUAL='vi'
+
 if [ -f ~/.functions ]; then
   . ~/.functions
 fi
