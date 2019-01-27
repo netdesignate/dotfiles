@@ -44,3 +44,11 @@ export HISTSIZE=1000000
 if [ -f ~/.functions ]; then
   . ~/.functions
 fi
+
+# webmin tricks [Ubuntu]
+
+alias webmin_service_enable='sudo update-rc.d webmin enable'
+alias webmin_service_disable='sudo update-rc.d webmin disable'
+alias webmin_start='sudo service webmin start'
+alias webmin_stop='sudo service webmin stop'
+
