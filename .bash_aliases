@@ -1,4 +1,4 @@
-alias bkup_cec='mysqldump -u cecLite -p cecLite > cecLite-$(date +%F.%H.%M).sql'
+alias bkup_cec='mysqldump -u cecLite -p cecLite > cecLite-$(date +%F-%H%M).sql'
 alias cd8='cd /var/www/ce8'
 alias cdj='cd /var/www/jaxbeachtech.com'
 alias cdw='cd /var/www/multisite'
