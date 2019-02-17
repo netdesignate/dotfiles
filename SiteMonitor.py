@@ -3,7 +3,7 @@
 # sample usage: SiteMonitor.py eriwen.com nixtutor.com yoursite.org
 # Gmail uses App Password instead if Dual Factor is enabled.
 # to install, just do this:
-# wget file
+# wget https://github.com/netdesignate/dotfiles/raw/master/SiteMonitor.py
 # SiteMonitor.py --from-file="Sites.txt" -g --to-addrs="9048340433@msg.fi.google.com,don@ndc.nu" --log-response-time -u "don@jaxbeachtech.com" -p "hxynidrowuhqwsqw" --alert-on-slow-response
 
 import pickle
