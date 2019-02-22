@@ -31,3 +31,6 @@ wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliase
 wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
 wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
 . ~/.bashrc
+
+sed -i '/^#/d'  ~/.history        # Remove all lines starting with '#'
+sed -i '/CAlist/d'  ~/.history    # Remove any line with 'CAlist'
