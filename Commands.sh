@@ -4,6 +4,8 @@
  vi ~/.functions
 
 # Alias definitions.
+grep 'bash_aliases' ~/.bash*  # check if it is in there...
+
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # add this to your .bashrc
