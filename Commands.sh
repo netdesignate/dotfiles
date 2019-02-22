@@ -15,6 +15,19 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # THEN: - just download them with wget
+if [ -f ~/.bash_aliases ]; then
+    mv ~/.bash_aliases ~/.bash_aliases.original
+    cd ~
+    wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
+fi
+
+if [ -f ~/.bash_logout ]; then
+    mv ~/.bash_logout ~/.bash_logout.original
+    cd ~
+    wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
+fi
+
 wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
 wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
+wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
 . ~/.bashrc
