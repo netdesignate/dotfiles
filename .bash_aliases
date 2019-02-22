@@ -18,7 +18,6 @@ alias du='du -h'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color'
-alias hg='histgrep'
 alias l='ls -CF'
 alias la='ls -la'
 alias less='less -r'
@@ -42,6 +41,7 @@ export HISTIGNORE="&:[bf]g:exit:fortune:clear:cl:history:dict *:which *:shred *:
 export HISTCONTROL=erasedups:ignoreboth
 unset HISTFILESIZE
 export HISTSIZE=1000000
+alias hg='histgrep'
 
 # change default editor to vi:
 
