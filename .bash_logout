@@ -8,5 +8,5 @@ fi
 
 # setup .history for searches by "histgrep" and/or "hg" (alias)
 cat ~/.bash_history >> ~/.history
-awk '!x[\$0]++' ~/.history > ~/.bash_history
+awk '!x[$0]++' ~/.history > ~/.bash_history
 \cp --force ~/.bash_history ~/.history
