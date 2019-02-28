@@ -15,6 +15,12 @@ function ipchk() {
   grep --color -ir $1 /cygdrive/c/Users/bf591ah/Documents/Supported_Tools/STEALTHWATCH/IPAM.txt
 }
 
+function dr8dl() {
+  echo 'composer require drupal/$1'
+  # composer require drupal/$1
+}
+
 export -f histgrep
 export -f ipchk
 export -f myip
+export -f dr8dl
