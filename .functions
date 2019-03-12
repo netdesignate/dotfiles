@@ -20,7 +20,12 @@ function dr8dl() {
   # composer require drupal/$1
 }
 
+function grepip() {
+  grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' $1
+}
+
 export -f histgrep
 export -f ipchk
 export -f myip
 export -f dr8dl
+export -f grepip
