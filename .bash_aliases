@@ -24,6 +24,7 @@ alias less='less -r'
 alias ll='ls -lahF --color=auto'
 alias ls='ls -hF --color=tty'
 alias lsd='ls -al | grep ^d'
+alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias thist='tail -n 30 ~/.bash_history'
 alias vdir='ls --color=auto --format=long'
 alias whence='type -a'
@@ -33,19 +34,19 @@ alias drupdate='composer update drupal/core webflo/drupal-core-require-dev --wit
 alias dr8dl='composer require drupal/module'
 
 # Setup History the RIGHT way…
-
+shopt -o noclobber
 shopt -s cmdhist
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -n"
 export HISTIGNORE="&:[bf]g:exit:fortune:clear:cl:history:dict *:which *:shred *:man *:apropos rm *:mplayer *:source *:. *:gojo *:mutt"
 export HISTCONTROL=erasedups:ignoreboth
 export HISTTIMEFORMAT="%y-%m-%d %T "
-unset HISTFILESIZE
+export HISTFILESIZE=1000000000
 export HISTSIZE=1000000
-alias hg='histgrep'
+alias hg='histgrep' 
 
 # change default editor to vi:
-
+set -o vi
 export EDITOR='vi'
 export VISUAL='vi'
 
@@ -54,7 +55,6 @@ if [ -f ~/.functions ]; then
 fi
 
 # webmin tricks [Ubuntu]
-
 alias webmin_service_enable='sudo update-rc.d webmin enable'
 alias webmin_service_disable='sudo update-rc.d webmin disable'
 alias webmin_start='sudo service webmin start'
