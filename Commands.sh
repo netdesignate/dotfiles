@@ -15,10 +15,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# ~/.functions too ...
-if [ -f ~/.functions ]; then
-    . ~/.functions
-fi
+# ~/.functions is pulled into ~/.bash_aliases ...
 
 # THEN: - just download them with wget
 if [ -f ~/.bash_aliases ]; then
