@@ -39,6 +39,7 @@ shopt -s histappend
 export PROMPT_COMMAND="history -a; history -n"
 export HISTIGNORE="&:[bf]g:exit:fortune:clear:cl:history:dict *:which *:shred *:man *:apropos rm *:mplayer *:source *:. *:gojo *:mutt"
 export HISTCONTROL=erasedups:ignoreboth
+export HISTTIMEFORMAT="%y-%m-%d %T "
 unset HISTFILESIZE
 export HISTSIZE=1000000
 alias hg='histgrep'
