@@ -43,3 +43,4 @@ wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
 
 sed -i '/^#/d'  ~/.history        # Remove all lines starting with '#'
 sed -i '/CAlist/d'  ~/.history    # Remove any line with 'CAlist'
+sed 's/x//g'                      # Remove 'x' from input...
