@@ -55,6 +55,7 @@ if [ -f ~/.functions ]; then
 fi
 
 alias mypath='tr ":" "\n" <<< "$PATH"'
+alias myip="dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/\"//g'"
 
 # webmin tricks [Ubuntu]
 alias webmin_service_enable='sudo update-rc.d webmin enable'
