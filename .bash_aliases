@@ -54,6 +54,8 @@ if [ -f ~/.functions ]; then
   . ~/.functions
 fi
 
+alias mypath='tr ":" "\n" <<< "$PATH"'
+
 # webmin tricks [Ubuntu]
 alias webmin_service_enable='sudo update-rc.d webmin enable'
 alias webmin_service_disable='sudo update-rc.d webmin disable'
