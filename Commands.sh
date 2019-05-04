@@ -2,7 +2,14 @@
 # My faves in dotfiles
  vi ~/.bash_aliases
  vi ~/.functions
-
+# T510 Ubuntu Backup option --> WD "My Passport"
+# /dev/sdb1  /mnt/mypassport   ntfs    user,fmask=0111,dmask=0000   0       0
+# 
+alias bkp='sudo tar czf \
+    /mnt/mypassport/DRM-RDrive/T510/T510_Backup_$(date +"%Y-%m-%d_%H-%M-%S").tar.gz \
+    --exclude=/backup.tar.gz --exclude=/dev --exclude=/mnt --exclude=/proc \
+    --exclude=/sys --exclude=/tmp --exclude=/lost+found /'
+    
 # Alias definitions.
 grep 'bash_aliases' ~/.bash*  # check if it is in there...
 
