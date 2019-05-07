@@ -22,8 +22,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# ~/.functions is pulled into ~/.bash_aliases ...
+# ey related stuff...
+if [ -f ~/.ey_aliases ]; then
+    . ~/.ey_aliases
+fi
 
+# ~/.functions is pulled into ~/.bash_aliases ...
 # THEN: - just download them with wget
 if [ -f ~/.bash_aliases ]; then
     mv ~/.bash_aliases ~/.bash_aliases.original
@@ -48,6 +52,7 @@ wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
 wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
 . ~/.bashrc
 
+sed -i 's/old/new/g' input.txt  # replace all occurrences in the file...
 sed -i '/^#/d'  ~/.history        # Remove all lines starting with '#'
 sed -i '/CAlist/d'  ~/.history    # Remove any line with 'CAlist'
 sed 's/x//g'                      # Remove 'x' from input...
