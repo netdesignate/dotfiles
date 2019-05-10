@@ -53,6 +53,14 @@ fi
 alias mypath='tr ":" "\n" <<< "$PATH"'
 alias myip="dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/\"//g'"
 alias unlockWD='sudo ~/wdpassport-utils.py -u'
+# to run the below bkpT510 cmd, first unlock the WD as above
+# T510 Ubuntu Backup option --> WD "My Passport"
+# /dev/sdb1  /mnt/mypassport   ntfs    user,fmask=0111,dmask=0000   0       0
+# 
+alias bkpT510='sudo tar czf \
+    /mnt/mypassport/DRM/T510/T510_Backup_$(date +"%Y-%m-%d_%H-%M-%S").tar.gz \
+    --exclude=/backup.tar.gz --exclude=/dev --exclude=/mnt --exclude=/proc \
+    --exclude=/sys --exclude=/tmp --exclude=/lost+found /'
 
 # webmin tricks [Ubuntu]
 alias webmin_service_enable='sudo update-rc.d webmin enable'
