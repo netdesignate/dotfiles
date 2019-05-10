@@ -6,7 +6,7 @@
 # /dev/sdb1  /mnt/mypassport   ntfs    user,fmask=0111,dmask=0000   0       0
 # 
 alias bkp='sudo tar czf \
-    /mnt/mypassport/DRM-RDrive/T510/T510_Backup_$(date +"%Y-%m-%d_%H-%M-%S").tar.gz \
+    /mnt/mypassport/DRM/T510/T510_Backup_$(date +"%Y-%m-%d_%H-%M-%S").tar.gz \
     --exclude=/backup.tar.gz --exclude=/dev --exclude=/mnt --exclude=/proc \
     --exclude=/sys --exclude=/tmp --exclude=/lost+found /'
     
