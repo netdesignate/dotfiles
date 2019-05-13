@@ -51,6 +51,7 @@ if [ -f ~/.functions ]; then
 fi
 
 alias mypath='tr ":" "\n" <<< "$PATH"'
+alias grepIP='grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"'
 alias myip="dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/\"//g'"
 alias unlockWD='sudo ~/wdpassport-utils.py -u'
 # to run the below bkpT510 cmd, first unlock the WD as above
