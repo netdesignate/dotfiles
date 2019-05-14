@@ -28,6 +28,7 @@ alias nonag="sed -i.bak 's/NotFound/Active/g' /usr/share/perl5/PVE/API2/Subscrip
 alias cls='clear'
 alias drupdate='composer update drupal/core webflo/drupal-core-require-dev --with-dependencies'
 alias dr8dl='composer require drupal/module'
+alias dotRefresh='. ~/.bashrc'
 
 # Setup History the RIGHT way…
 shopt -o noclobber
