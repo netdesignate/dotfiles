@@ -21,6 +21,7 @@ alias ll='ls -lahF --color=auto'
 alias ls='ls -hF --color=tty'
 alias lsd='ls -al | grep ^d'
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
+alias nonag="sed -i.bak 's/NotFound/Active/g' /usr/share/perl5/PVE/API2/Subscription.pm && systemctl restart pveproxy.service"
 alias thist='tail -n 30 ~/.bash_history'
 alias vdir='ls --color=auto --format=long'
 alias whence='type -a'
