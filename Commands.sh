@@ -52,7 +52,8 @@ wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
 wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
 . ~/.bashrc
 
-sed -i 's/old/new/g' input.txt  # replace all occurrences in the file...
+sed -i 's/old/new/g' input.txt    # replace all occurrences in the file...
 sed -i '/^#/d'  ~/.history        # Remove all lines starting with '#'
-sed -i '/CAlist/d'  ~/.history    # Remove any line with 'CAlist'
+sed -i '/CAlist/d'  ~/.history    # Remove any line that contains 'CAlist'
+sed -i '/^.\{,20\}$/d' ~/.history # Delete lines shorter than 20 Characters
 sed 's/x//g'                      # Remove 'x' from input...
