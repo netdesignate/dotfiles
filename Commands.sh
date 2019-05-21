@@ -47,6 +47,7 @@ if [ -f ~/.functions ]; then
     wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
 fi
 
+rm -rf ~/.bash_aliases* ~/.functions* ~/.bash_logout*
 wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
 wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
 wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
