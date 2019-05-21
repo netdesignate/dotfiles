@@ -25,7 +25,6 @@ alias nonag="sed -i.bak 's/NotFound/Active/g' /usr/share/perl5/PVE/API2/Subscrip
 alias thist='tail -n 30 ~/.bash_history'
 alias vdir='ls --color=auto --format=long'
 alias whence='type -a'
-alias nonag="sed -i.bak 's/NotFound/Active/g' /usr/share/perl5/PVE/API2/Subscription.pm && systemctl restart pveproxy.service"
 alias cls='clear'
 alias drupdate='composer update drupal/core webflo/drupal-core-require-dev --with-dependencies'
 alias dr8dl='composer require drupal/module'
@@ -52,6 +51,8 @@ if [ -f ~/.functions ]; then
   . ~/.functions
 fi
 
+alias upd='sudo apt update'
+alias upg='sudo apt upgrade'
 alias mypath='tr ":" "\n" <<< "$PATH"'
 alias grepIP='grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"'
 alias myip="dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/\"//g'"
