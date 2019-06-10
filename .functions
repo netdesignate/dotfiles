@@ -1,5 +1,7 @@
 function myip(){ dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/"//g'; }
 function dug() { dig +short -x $(dig +short $1); }
+function uc() { echo $1 | tr a-z A-Z; }
+function lc() { echo $1 | tr A-Z a-z; }
 
 function histgrep() {
   local n_lines=20
@@ -34,3 +36,5 @@ export -f dug
 export -f dr8dl
 export -f grepip
 export -f airport
+export -f uc
+export -f lc
