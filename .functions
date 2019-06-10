@@ -1,7 +1,13 @@
 function myip(){ dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/"//g'; }
+
+# reverse DNS (convert IP to DNS name)
 function dug() { dig +short -x $(dig +short $1); }
-function uc() { echo "$1" | tr a-z A-Z; }
-function lc() { echo "$1" | tr A-Z a-z; }
+
+# convert to uppercase:
+function uc() { echo "$@"|awk '{print toupper($0)}'; }
+
+# convert to lowercase:
+function lc() { echo "$@"|awk '{print tolower($0)}'; }
 
 function histgrep() {
   local n_lines=20
