@@ -53,6 +53,7 @@ fi
 
 alias upd='sudo apt update'
 alias upg='sudo apt upgrade'
+alias octfilep='stat -c "%a %n" *'
 alias mypath='tr ":" "\n" <<< "$PATH"'
 alias grepIP='grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"'
 alias myip="dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/\"//g'"
