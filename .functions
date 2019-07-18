@@ -15,7 +15,7 @@ function histgrep() {
     n_lines="$1"
     shift
   fi
-  grep --with-filename --line-number "$@" ~/.history | tail -n "$n_lines"
+  tac ~/.history | grep "$@" | tail -n "$n_lines"
 }
 
 function ipchk() {
