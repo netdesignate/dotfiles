@@ -54,6 +54,7 @@ fi
 
 alias upd='sudo apt update'
 alias upg='sudo apt upgrade'
+alias noblanks='awk "NF" '
 alias octfilep='stat -c "%a %n" *'
 alias mypath='tr ":" "\n" <<< "$PATH"'
 alias grepIP='grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"'
