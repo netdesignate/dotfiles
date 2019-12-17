@@ -44,3 +44,35 @@ export -f grepip
 export -f airport
 export -f uc
 export -f lc
+
+#=================
+#[ 20191216-21:42:15 MySystem: eth5: RX: 2 Gb/s ]
+#[ 20191216-21:42:20 MySystem: eth5: RX: 3 Gb/s ]
+#[ 20191216-21:42:25 MySystem: eth5: RX: 2 Gb/s ]
+#[ 20191216-21:42:30 MySystem: eth5: RX: 3 Gb/s ]
+#[ 20191216-21:42:35 MySystem: eth5: RX: 2 Gb/s ]
+#[ 20191216-21:42:40 MySystem: eth5: RX: 3 Gb/s ]
+# Unfortunately only INT output ^^^
+#
+function humanValue()
+{
+    h=( '' K M G T P )
+    i=1; v=$(( $1 * 8 ))
+    while [ $v -gt $(( 1 << 10 * i )) ]; do let i++; done;
+    echo -n "$(( $v >> 10 * --i )) ${h[i]}b/s";
+}
+if="eth4"
+thisHost=$(hostname)
+date 
+declare -A RX2 TX2;
+while sleep 5; 
+do
+    
+    for INTERFACE in $if;
+    do
+        RX1=$(cat /sys/class/net/${INTERFACE}/statistics/rx_bytes)
+        DOWN=$(( RX1 - RX2[$INTERFACE] ))
+        RX2[$INTERFACE]=$RX1;
+        echo -e "[ $(date +'%Y%m%d-%H:%M:%S') $thisHost: $INTERFACE:\tRX: $(humanValue $DOWN) ]"
+    done;
+done;
