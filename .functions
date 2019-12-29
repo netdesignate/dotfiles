@@ -61,18 +61,21 @@ function humanValue()
     while [ $v -gt $(( 1 << 10 * i )) ]; do let i++; done;
     echo -n "$(( $v >> 10 * --i )) ${h[i]}b/s";
 }
-if="eth4"
-thisHost=$(hostname)
-date 
-declare -A RX2 TX2;
-while sleep 5; 
-do
-    
-    for INTERFACE in $if;
-    do
-        RX1=$(cat /sys/class/net/${INTERFACE}/statistics/rx_bytes)
-        DOWN=$(( RX1 - RX2[$INTERFACE] ))
-        RX2[$INTERFACE]=$RX1;
-        echo -e "[ $(date +'%Y%m%d-%H:%M:%S') $thisHost: $INTERFACE:\tRX: $(humanValue $DOWN) ]"
-    done;
-done;
+export -f humanValue
+
+# to get Interface Stats in friendly format, uncomment the below function:
+# ========================================================================
+# if="eth4"
+# thisHost=$(hostname)
+# date 
+# declare -A RX2 TX2;
+# while sleep 5; 
+# do
+#     for INTERFACE in $if;
+#     do
+#         RX1=$(cat /sys/class/net/${INTERFACE}/statistics/rx_bytes)
+#         DOWN=$(( RX1 - RX2[$INTERFACE] ))
+#         RX2[$INTERFACE]=$RX1;
+#         echo -e "[ $(date +'%Y%m%d-%H:%M:%S') $thisHost: $INTERFACE:\tRX: $(humanValue $DOWN) ]"
+#     done;
+# done;
