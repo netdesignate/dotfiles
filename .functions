@@ -1,4 +1,5 @@
 function myip(){ dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/"//g'; }
+function aptmods(){apt list --installed | grep $1 | cut -d '/' -f1; }
 
 # reverse DNS (convert IP to DNS name)
 function dug() { dig +short -x $(dig +short $1); }
@@ -38,6 +39,7 @@ function airport() {
 export -f histgrep
 export -f ipchk
 export -f myip
+export -f aptmods
 export -f dug
 export -f dr8dl
 export -f grepip
