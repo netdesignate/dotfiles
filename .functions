@@ -48,36 +48,66 @@ export -f uc
 export -f lc
 
 #=================
-#[ 20191216-21:42:15 MySystem: eth5: RX: 2 Gb/s ]
-#[ 20191216-21:42:20 MySystem: eth5: RX: 3 Gb/s ]
-#[ 20191216-21:42:25 MySystem: eth5: RX: 2 Gb/s ]
-#[ 20191216-21:42:30 MySystem: eth5: RX: 3 Gb/s ]
-#[ 20191216-21:42:35 MySystem: eth5: RX: 2 Gb/s ]
-#[ 20191216-21:42:40 MySystem: eth5: RX: 3 Gb/s ]
-# Unfortunately only INT output ^^^
-#
-function humanValue()
+function bytesToHR()
 {
-    h=( '' K M G T P )
-    i=1; v=$(( $1 * 8 ))
-    while [ $v -gt $(( 1 << 10 * i )) ]; do let i++; done;
-    echo -n "$(( $v >> 10 * --i )) ${h[i]}b/s";
-}
-export -f humanValue
+  local SIZE=$1
+  local UNITS="Bps KBps MBps GBps TBps PBps"
+  for F in $UNITS; do
+    local UNIT=$F
+    test ${SIZE%.*} -lt 1024 && break;
+    SIZE=$(echo "$SIZE / 1024" | bc -l)
+  done
 
-# to get Interface Stats in friendly format, uncomment the below function:
-# ========================================================================
-# if="eth4"
-# thisHost=$(hostname)
-# date 
-# declare -A RX2 TX2;
-# while sleep 5; 
-# do
-#     for INTERFACE in $if;
-#     do
-#         RX1=$(cat /sys/class/net/${INTERFACE}/statistics/rx_bytes)
-#         DOWN=$(( RX1 - RX2[$INTERFACE] ))
-#         RX2[$INTERFACE]=$RX1;
-#         echo -e "[ $(date +'%Y%m%d-%H:%M:%S') $thisHost: $INTERFACE:\tRX: $(humanValue $DOWN) ]"
-#     done;
-# done;
+  if [ "$UNIT" == "B" ]; then
+    printf "%4.0f    %s\n" $SIZE $UNIT
+  else
+    printf "%7.02f %s\n" $SIZE $UNIT
+  fi
+}
+
+function ToK()
+{ # down to multiples of 10**3
+  local SIZE=$1
+  local UNITS="pps Kpps Mpps Gpps Tpps Ppps"
+  for F in $UNITS; do
+    local UNIT=$F
+    test ${SIZE%.*} -lt 1000 && break;
+    SIZE=$(echo "$SIZE / 1000" | bc -l)
+  done
+
+  if [ "$UNIT" == "B" ]; then
+    printf "%4.0f    %s\n" $SIZE $UNIT
+  else
+    printf "%7.02f %s\n" $SIZE $UNIT
+  fi
+}
+
+function dpdk_rx()
+{
+  thisHost=$(hostname)
+  interfc=$1
+  interval=30
+  # echo "I/F:bytes:packets:errs"  # Debugging 
+  echo "[dpdk_rx] Tracking interface traffic for $interfc in $interval second intervals:"
+  while true
+  do
+    # grep $interfc /FSS/log/dpdk_stats | awk '{print $1 $2 ":" $3 ":" $4 }' # To debug
+    R1=`grep $interfc /FSS/log/dpdk_stats | awk '{print $2}'`
+    PPS1=`grep $interfc /FSS/log/dpdk_stats | awk '{print $3}'`
+    sleep $interval
+    R2=`grep $interfc /FSS/log/dpdk_stats | awk '{print $2}'`
+    PPS2=`grep $interfc /FSS/log/dpdk_stats | awk '{print $3}'`
+    RBPS=`expr $R2 - $R1`
+    PPS=`expr $PPS2 - $PPS1`
+    RKBPS=`expr $RBPS / 1024`
+    echo -e "[ $(date +'%Y%m%d-%H:%M:%S') $thisHost $interfc RX:$(bytesToHR $RBPS)$(ToK $PPS)]"
+  done
+}
+
+Outputs like this:
+
+-bash-4.1$ dpdk_rx eth4
+[dpdk_rx] Tracking interface traffic for eth4 in 30 second intervals:
+[ 20200113-22:46:05 host1 eth4 RX: 792.13 MBps   1.32 Mpps]
+[ 20200113-22:46:35 host1 eth4 RX: 646.82 MBps   1.18 Mpps]
+[ 20200113-22:47:05 host1 eth4 RX: 657.65 MBps   1.22 Mpps]
