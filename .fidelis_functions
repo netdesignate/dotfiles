@@ -1,0 +1,84 @@
+function bytesToHR()
+{
+  local SIZE=$1
+  local UNITS="Bps KBps MBps GBps TBps PBps"
+  for F in $UNITS; do
+    local UNIT=$F
+    test ${SIZE%.*} -lt 1024 && break;
+    SIZE=$(echo "$SIZE / 1024" | bc -l)
+  done
+
+  if [ "$UNIT" == "B" ]; then
+    printf "%4.0f    %s\n" $SIZE $UNIT
+  else
+    printf "%7.02f %s\n" $SIZE $UNIT
+  fi
+}
+
+function ToK()
+{ # down to multiples of 10**3
+  local SIZE=$1
+  local UNITS="pps Kpps Mpps Gpps Tpps Ppps"
+  for F in $UNITS; do
+    local UNIT=$F
+    test ${SIZE%.*} -lt 1000 && break;
+    SIZE=$(echo "$SIZE / 1000" | bc -l)
+  done
+
+  if [ "$UNIT" == "B" ]; then
+    printf "%4.0f    %s\n" $SIZE $UNIT
+  else
+    printf "%7.02f %s\n" $SIZE $UNIT
+  fi
+}
+
+function xps_rx()
+{
+  # [xps_rx] Fidelis Sensor traffic Stats: (Must be a Fidelis Sensor)
+  # [xps_rx] No parameters - finds out the sniffer interface & type automagically
+  
+  thisHost=$(hostname)
+  xps_sensor_if=`grep -e '^nics ' /fss/etc/sniffer.cf | cut -d' ' -f2`
+  interval=10  # Seconds to sleep between cycles
+  checking=0   # debugging flag
+    echo "[xps_rx] Tracking interface traffic on $xps_sensor_if every $interval seconds:"
+  while true
+  do
+  if [ -e /fss/log/dpdk_linkinfo ] # are we running DPDK Drivers ?
+  then  # Yes
+    R1=`grep $xps_sensor_if /FSS/log/dpdk_stats | awk '{print $2}'`
+    E1=`grep $xps_sensor_if /FSS/log/dpdk_stats | awk '{print $4}'`
+    P1=`grep $xps_sensor_if /FSS/log/dpdk_stats | awk '{print $3}'`
+  else  # No
+    P1=`cat /sys/class/net/$xps_sensor_if/statistics/rx_packets`
+    E1=`cat /sys/class/net/$xps_sensor_if/statistics/rx_errors`
+    R1=`cat /sys/class/net/$xps_sensor_if/statistics/rx_bytes`
+  fi
+
+    sleep $interval
+
+  if [ -e /fss/log/dpdk_linkinfo ] # are we running DPDK Drivers ?
+  then  # Yes
+    R2=`grep $xps_sensor_if /FSS/log/dpdk_stats | awk '{print $2}'`
+    P2=`grep $xps_sensor_if /FSS/log/dpdk_stats | awk '{print $3}'`
+    E2=`grep $xps_sensor_if /FSS/log/dpdk_stats | awk '{print $4}'`
+  else  # No
+    P2=`cat /sys/class/net/$xps_sensor_if/statistics/rx_packets`
+    E2=`cat /sys/class/net/$xps_sensor_if/statistics/rx_errors`
+    R2=`cat /sys/class/net/$xps_sensor_if/statistics/rx_bytes`
+  fi
+
+    [ $checking == 1 ] && (echo -e "[xps_rx:debug] RXBytes: 2nd, 1st, Net[2nd-1st], Net Per Second\n[xps_rx:debug] xps_rxBytes: $R2, $R1, $RXBYTES, $RXBPS"; exit 0) || (c=$?; (exit $c)) 
+    RXBYTES=`expr $R2 - $R1`
+    RXERROR=`expr $E2 - $E1`
+    RXBPS=`expr $RXBYTES / $interval`
+    PACKETS=`expr $P2 - $P1`
+    PPS=`expr $PACKETS / $interval`
+    [ $checking == 1 ] && (echo -e "[xps_rx:debug] RxPackets: $P2, $P1, $PACKETS, $PPS"; exit 0) || (c=$?; (exit $c)) 
+    echo -e "[ $(date +'%Y%m%d-%H:%M:%S') $thisHost $xps_sensor_if RX:$(bytesToHR $RXBPS)$(ToK $PPS)]"
+    if [ $RXERROR != 0 ] 
+    then 
+      echo "Note that there was a non-zero error count in this time interval: $RXERROR"
+    fi
+  done
+}
