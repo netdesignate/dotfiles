@@ -104,10 +104,9 @@ function dpdk_rx()
   done
 }
 
-Outputs like this:
-
--bash-4.1$ dpdk_rx eth4
-[dpdk_rx] Tracking interface traffic for eth4 in 30 second intervals:
-[ 20200113-22:46:05 host1 eth4 RX: 792.13 MBps   1.32 Mpps]
-[ 20200113-22:46:35 host1 eth4 RX: 646.82 MBps   1.18 Mpps]
-[ 20200113-22:47:05 host1 eth4 RX: 657.65 MBps   1.22 Mpps]
+#  Outputs like this:
+#  $ dpdk_rx eth4
+#  [dpdk_rx] Tracking interface traffic for eth4 in 30 second intervals:
+#  [ 20200113-22:46:05 host1 eth4 RX: 792.13 MBps   1.32 Mpps]
+#  [ 20200113-22:46:35 host1 eth4 RX: 646.82 MBps   1.18 Mpps]
+#  [ 20200113-22:47:05 host1 eth4 RX: 657.65 MBps   1.22 Mpps]
