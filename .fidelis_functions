@@ -82,3 +82,5 @@ function xps_rx()
     fi
   done
 }
+
+alias tomcat_version="grep -i 'apache tomcat' /FSS/tomcat/logs/tomcat-server.out | tail"
