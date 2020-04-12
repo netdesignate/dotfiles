@@ -66,6 +66,15 @@ alias unlockWD='sudo ~/wdpassport-utils.py -u'
 # T510 Ubuntu Backup option --> WD "My Passport"
 # /dev/sdb1  /mnt/mypassport   ntfs    user,fmask=0111,dmask=0000   0       0
 # 
+alias chkpy='                        \
+  echo "python -V"; python -V;       \
+  echo "python2 -V"; python2 -V;     \
+  echo "python2.7 -V"; python2.7 -V; \
+  echo "python3 -V"; python3 -V;            \
+  echo "python3.7 -V"; python3.7 -V;        \
+  echo "py -2 -V"; py -2 -V;                \
+  echo "py -3 -V"; py -3 -V'
+
 alias bkpT510='sudo tar czf \
     /mnt/mypassport/DRM/T510/T510_Backup_$(date +"%Y-%m-%d_%H-%M-%S").tar.gz \
     --exclude=/backup.tar.gz --exclude=/dev --exclude=/mnt --exclude=/proc \
