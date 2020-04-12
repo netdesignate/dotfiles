@@ -15,7 +15,7 @@ alias wtail='sudo tail -n 200 /var/log/apache2/access.log | less'
 alias df='df -h'
 alias dir='ls --color=auto --format=vertical'
 alias du='du -h'
-alias dusum=du -sh * | sort -rh
+alias dusum='du -sh * | sort -rh'
 alias l='ls -CF'
 alias la='ls -la'
 alias less='less -r'
