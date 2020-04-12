@@ -56,15 +56,6 @@ wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
 # great cmd below to export (from powershell) full date time stamps into a csv for display in excel.
 Get-ChildItem c:\pic\folder -Force | Select-Object FullName, CreationTime, LastAccessTime, LastWriteTime, Mode, Length | Export-Csv c:\path\file.csv
 
-alias chkpy='                        \
-  echo "python -V"; python -V;       \
-  echo "python2 -V"; python2 -V;     \
-  echo "python2.7 -V"; python2.7 -V; \
-  echo "python3 -V"; python3 -V;            \
-  echo "python3.7 -V"; python3.7 -V;        \
-  echo "py -2 -V"; py -2 -V;                \
-  echo "py -3 -V"; py -3 -V'
-
 sed -i 's/old/new/g' input.txt    # replace all occurrences in the file...
 sed -i '/^#/d'  ~/.history        # Remove all lines starting with '#'
 sed -i '/CAlist/d'  ~/.history    # Remove any line that contains 'CAlist'
