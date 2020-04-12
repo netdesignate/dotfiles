@@ -1,3 +1,4 @@
+# OK Adding a Verion: Bash-Aliases-2020-04-12 [Easter 2020]
 alias bkup_cec='mysqldump -u cecLite -p cecLite > cecLite-$(date +%F-%H%M).sql'
 alias cd7='cd /var/www/ce7'
 alias cd8='cd /var/www/ce8'
@@ -14,6 +15,7 @@ alias wtail='sudo tail -n 200 /var/log/apache2/access.log | less'
 alias df='df -h'
 alias dir='ls --color=auto --format=vertical'
 alias du='du -h'
+alias dusum=du -sh * | sort -rh
 alias l='ls -CF'
 alias la='ls -la'
 alias less='less -r'
