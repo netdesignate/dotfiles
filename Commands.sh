@@ -62,3 +62,4 @@ sed -i '/CAlist/d'  ~/.history    # Remove any line that contains 'CAlist'
 sed -i '/^.\{,20\}$/d' ~/.history # Delete lines shorter than 20 Characters
 sed 's/x//g'                      # Remove 'x' from input...
 sed -n '/^SomeString/,$p'         # Removes all lines until a match (excludes the match)
+sed '1,9!d' file.name             # prints only lines 1 thru 9 from file.name to stdout
