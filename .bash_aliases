@@ -1,5 +1,6 @@
 # OK Adding a Verion: Bash-Aliases-2020-04-12 [Easter 2020]
 alias bkup_cec='mysqldump -u cecLite -p cecLite > cecLite-$(date +%F-%H%M).sql'
+alias ls1='find . -mtime 0'
 alias cd7='cd /var/www/ce7'
 alias cd8='cd /var/www/ce8'
 alias cdce='cd /var/www/cityethics.org'
