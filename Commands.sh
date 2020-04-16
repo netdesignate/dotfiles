@@ -56,11 +56,12 @@ wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
 # great cmd below to export (from powershell) full date time stamps into a csv for display in excel.
 Get-ChildItem c:\pic\folder -Force | Select-Object FullName, CreationTime, LastAccessTime, LastWriteTime, Mode, Length | Export-Csv c:\path\file.csv
 
-sed -i 's/old/new/g' input.txt    # replace all occurrences in the file...
-sed -i '/^#/d'  ~/.history        # Remove all lines starting with '#'
-sed -i '/CAlist/d'  ~/.history    # Remove any line that contains 'CAlist'
-sed -i '/^.\{,20\}$/d' ~/.history # Delete lines shorter than 20 Characters
-sed 's/x//g'                      # Remove 'x' from input...
-sed -n '/^SomeString/,$p'         # Removes all lines until a match (excludes the match)
-sed '1,9!d' file.name             # prints only lines 1 thru 9 from file.name to stdout
-sed 's/^ *//g'                    # remove leading spaces (any count)
+sed -i 's/old/new/g' input.txt # replace all occurrences in the file...
+sed -i '/^#/d'  ~/.history     # Remove all lines starting with '#'
+sed -i '/CAlist/d'  ~/.history # Remove any line that contains 'CAlist'
+sed -i '/^.\{,20\}$/d' fname   # Delete lines shorter than 20 Characters
+sed 's/x//g'                   # Remove 'x' from input...
+sed -n '/^SomeString/,$p'      # Removes all lines until a match (excludes the match)
+sed '1,9!d' file.name          # prints only lines 1 thru 9 from file.name to stdout
+sed 's/^ *//g'                 # remove leading spaces (any count)
+${VarName:(-3)}                # https://stackoverflow.com/questions/19858600/accessing-last-x-characters-of-a-string-in-bash
