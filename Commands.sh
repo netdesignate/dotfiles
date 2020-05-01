@@ -65,3 +65,6 @@ sed -n '/^SomeString/,$p'      # Removes all lines until a match (excludes the m
 sed '1,9!d' file.name          # prints only lines 1 thru 9 from file.name to stdout
 sed 's/^ *//g'                 # remove leading spaces (any count)
 ${var:(-3)} or ${var: -3}      # https://stackoverflow.com/questions/19858600/accessing-last-x-characters-of-a-string-in-bash
+function urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
+# $ urldecode "Bandwidth+usage+exceeded+-+Current%3A+7995%28Mbps%29+%2F+Limit+5000%28Mbps%29"
+# Bandwidth usage exceeded - Current: 7995(Mbps) / Limit 5000(Mbps)
