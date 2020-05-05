@@ -42,6 +42,7 @@ function airport() {
   grep --color -ir $1 /cygdrive/c/Users/bf591ah/Documents/Supported_Tools/AUTOMATION/HGA/bluecat/Airports.txt
 }
 
+export -f urldecode
 export -f histgrep
 export -f ipchk
 export -f myip
