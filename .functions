@@ -1,6 +1,12 @@
 function myip(){ dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/"//g'; }
 function aptmods(){ apt list --installed | grep $1 | cut -d '/' -f1; }
 
+urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
+# x="http%3A%2F%2Fstackoverflow.com%2Fsearch%3Fq%3Durldecode%2Bbash"
+# y=$(urldecode "$x")
+# echo "$y"
+
+http://stackoverflow.com/search?q=urldecode+bash
 # reverse DNS (convert IP to DNS name)
 function dug() { dig +short -x $(dig +short $1); }
 
