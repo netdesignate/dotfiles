@@ -42,6 +42,8 @@ function airport() {
   grep --color -ir $1 /cygdrive/c/Users/bf591ah/Documents/Supported_Tools/AUTOMATION/HGA/bluecat/Airports.txt
 }
 
+function aptmods(){ apt list --installed | grep $1 | cut -d '/' -f1; }
+
 export -f urldecode
 export -f histgrep
 export -f ipchk
@@ -51,6 +53,7 @@ export -f dug
 export -f dr8dl
 export -f grepip
 export -f airport
+export -f aptmods
 export -f uc
 export -f lc
 
