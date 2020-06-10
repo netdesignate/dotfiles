@@ -57,8 +57,8 @@ if [ -f ~/.functions ]; then
   . ~/.functions
 fi
 
-alias upd='sudo apt-get update'
-alias upg='sudo apt-get upgrade'
+alias upd='apt-get update'
+alias upg='apt-get upgrade'
 alias noblanks='awk "NF" '
 alias octfilep='stat -c "%a %n" *'
 alias mypath='tr ":" "\n" <<< "$PATH"'
