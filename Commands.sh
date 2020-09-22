@@ -58,6 +58,7 @@ Get-ChildItem c:\pic\folder -Force | Select-Object FullName, CreationTime, LastA
 
 sed -i 's/old/new/g' input.txt # replace all occurrences in the file...
 sed -i '/^#/d'  ~/.history     # Remove all lines starting with '#'
+sed -r '/^\s*$/d'              # Remove all "empty" lines (no Chars, whitespace ok)
 sed -i '/CAlist/d'  ~/.history # Remove any line that contains 'CAlist'
 sed -i '/^.\{,20\}$/d' fname   # Delete lines shorter than 20 Characters
 sed 's/x//g'                   # Remove 'x' from input...
