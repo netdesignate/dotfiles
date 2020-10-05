@@ -64,5 +64,6 @@ sed -i '/^.\{,20\}$/d' fname   # Delete lines shorter than 20 Characters
 sed 's/x//g'                   # Remove 'x' from input...
 sed -n '/^SomeString/,$p'      # Removes all lines until a match (excludes the match)
 sed '1,9!d' file.name          # prints only lines 1 thru 9 from file.name to stdout
+sed -n -e 5,8p -e 10p file     # To print range with other specific line (e.g. 5-8 & 10)
 sed 's/^ *//g'                 # remove leading spaces (any count)
 ${var:(-3)} or ${var: -3}      # https://stackoverflow.com/questions/19858600/accessing-last-x-characters-of-a-string-in-bash
