@@ -56,6 +56,9 @@ wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
 # great cmd below to export (from powershell) full date time stamps into a csv for display in excel.
 Get-ChildItem c:\pic\folder -Force | Select-Object FullName, CreationTime, LastAccessTime, LastWriteTime, Mode, Length | Export-Csv c:\path\file.csv
 
+# Count the number of [e.g. Commas] in each line of a file:
+ grep -n -o ','  FileName|sort -n | uniq -c | cut -d : -f 1 | head
+ 
 sed -i 's/old/new/g' input.txt # replace all occurrences in the file...
 sed -i '/^#/d'  ~/.history     # Remove all lines starting with '#'
 sed -r '/^\s*$/d'              # Remove all "empty" lines (no Chars, whitespace ok)
