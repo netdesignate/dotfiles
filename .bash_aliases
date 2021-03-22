@@ -28,6 +28,7 @@ alias lsh='ls -al *.sh *.py'
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias nonag="sed -i.bak 's/NotFound/Active/g' /usr/share/perl5/PVE/API2/Subscription.pm && systemctl restart pveproxy.service"
 alias thist='tail -n 30 ~/.bash_history'
+alias linuxver='lsb_release -a'
 alias vdir='ls --color=auto --format=long'
 alias whence='type -a'
 alias cls='clear'
