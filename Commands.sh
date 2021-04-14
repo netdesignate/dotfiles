@@ -65,6 +65,7 @@ sed -r '/^\s*$/d'              # Remove all "empty" lines (no Chars, whitespace 
 sed -i '/CAlist/d'  ~/.history # Remove any line that contains 'CAlist'
 sed -i '/^.\{,20\}$/d' fname   # Delete lines shorter than 20 Characters
 sed 's/x//g'                   # Remove 'x' from input...
+sed "/str1/,/str2/d" file      # remove ALL lines between str1/2 - including lines where strx is found
 sed -n '/^SomeString/,$p'      # Removes all lines until a match (excludes the match)
 sed '1,9!d' file.name          # prints only lines 1 thru 9 from file.name to stdout
 sed -n -e 5,8p -e 10p file     # To print range with other specific line (e.g. 5-8 & 10)
