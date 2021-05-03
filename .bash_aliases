@@ -36,6 +36,7 @@ alias drupdate='composer update drupal/core webflo/drupal-core-require-dev --wit
 alias dr8dl='composer require drupal/module'
 alias dotRefresh='. ~/.bashrc'
 alias mntz='sudo mount -t drvfs '\\harvard\cdm' /mnt/harvard'
+alias uver='dist.sh'
 
 # Setup History the RIGHT way…
 shopt -o noclobber
