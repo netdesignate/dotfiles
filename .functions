@@ -44,6 +44,15 @@ function airport() {
 
 function aptmods(){ apt list --installed | grep $1 | cut -d '/' -f1; }
 
+function HR(){ 
+    # 1K = 1024, 1M = 1048576
+    echo "$(numfmt --padding=6 --to=iec ${1})" 
+}
+function AddCommas(){
+    # 1K = 1000, 1M = 1000000
+    echo "$(numfmt --padding=6 --to=si ${1})" 
+}
+
 export -f urldecode
 export -f histgrep
 export -f ipchk
@@ -56,6 +65,8 @@ export -f airport
 export -f aptmods
 export -f uc
 export -f lc
+export -f AddCommas
+export -f HR
 
 #=================
 function bytesToHR()
