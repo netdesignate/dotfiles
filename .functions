@@ -38,6 +38,10 @@ function grepip() {
   grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' $1
 }
 
+function strcmp() {
+  [[ "${1}" == "${2}" ]]  && echo "Equal" || echo "Not equal"
+}
+
 function airport() {
   grep --color -ir $1 /cygdrive/c/Users/bf591ah/Documents/Supported_Tools/AUTOMATION/HGA/bluecat/Airports.txt
 }
@@ -61,6 +65,7 @@ export -f aptmods
 export -f dug
 export -f dr8dl
 export -f grepip
+export -f strcmp
 export -f airport
 export -f aptmods
 export -f uc
