@@ -108,6 +108,15 @@ function ToK()
   fi
 }
 
+function Wake()
+{
+  MAC=F48E3890F0AD
+  Broadcast=255.255.255.255
+  PortNumber=9
+  echo $MAC | nc -w1 -u -b $Broadcast $PortNumber
+}
+export -f Wake
+
 function dpdk_rx()
 {
   thisHost=$(hostname)
