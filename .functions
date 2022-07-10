@@ -57,6 +57,15 @@ function AddCommas(){
     echo "$(numfmt --padding=6 --to=si ${1})" 
 }
 
+function Wake()
+{
+  MAC=F48E3890F0AD
+  Broadcast=255.255.255.255
+  PortNumber=9
+  echo $MAC | nc -w1 -u -b $Broadcast $PortNumber
+}
+
+export -f Wake
 export -f urldecode
 export -f histgrep
 export -f ipchk
@@ -72,6 +81,7 @@ export -f uc
 export -f lc
 export -f AddCommas
 export -f HR
+export -f ToK
 
 #=================
 function bytesToHR()
@@ -107,15 +117,6 @@ function ToK()
     printf "%7.02f %s\n" $SIZE $UNIT
   fi
 }
-
-function Wake()
-{
-  MAC=F48E3890F0AD
-  Broadcast=255.255.255.255
-  PortNumber=9
-  echo $MAC | nc -w1 -u -b $Broadcast $PortNumber
-}
-export -f Wake
 
 function dpdk_rx()
 {
