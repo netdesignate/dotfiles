@@ -65,6 +65,16 @@ function Wake()
   echo -e $(echo $(printf 'f%.0s' {1..12}; printf "$(echo $MAC | sed 's/[:-]//g')%.0s" {1..16}) | sed -e 's/../\\x&/g') | nc -w1 -u -b $Broadcast $PortNumber
 }
 
+
+function cmp.bash.aliases()
+{
+  cd /tmp;
+  wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
+  mv .bash_aliases $(hostname).bash_aliases;
+  printf 'diff ~/.bash_aliases /tmp/$(hostname).bash_aliases\n=============================================\n'
+  diff ~/.bash_aliases /tmp/$(hostname).bash_aliases;
+}
+
 export -f Wake
 export -f urldecode
 export -f histgrep
