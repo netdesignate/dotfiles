@@ -74,25 +74,6 @@ function cmp.bash.aliases()
   printf 'diff ~/.bash_aliases /tmp/$(hostname).bash_aliases\n=============================================\n'
   diff ~/.bash_aliases /tmp/$(hostname).bash_aliases;
 }
-
-export -f Wake
-export -f urldecode
-export -f histgrep
-export -f ipchk
-export -f myip
-export -f aptmods
-export -f dug
-export -f dr8dl
-export -f grepip
-export -f strcmp
-export -f airport
-export -f aptmods
-export -f uc
-export -f lc
-export -f AddCommas
-export -f HR
-export -f ToK
-
 #=================
 function bytesToHR()
 {
@@ -148,11 +129,29 @@ function dpdk_rx()
     RKBPS=`expr $RBPS / 1024`
     echo -e "[ $(date +'%Y%m%d-%H:%M:%S') $thisHost $interfc RX:$(bytesToHR $RBPS)$(ToK $PPS)]"
   done
-}
-
+  
 #  Outputs like this:
 #  $ dpdk_rx eth4
 #  [dpdk_rx] Tracking interface traffic for eth4 in 30 second intervals:
 #  [ 20200113-22:46:05 host1 eth4 RX: 792.13 MBps   1.32 Mpps]
 #  [ 20200113-22:46:35 host1 eth4 RX: 646.82 MBps   1.18 Mpps]
 #  [ 20200113-22:47:05 host1 eth4 RX: 657.65 MBps   1.22 Mpps]
+}
+
+export -f Wake
+export -f urldecode
+export -f histgrep
+export -f ipchk
+export -f myip
+export -f aptmods
+export -f dug
+export -f dr8dl
+export -f grepip
+export -f strcmp
+export -f airport
+export -f aptmods
+export -f uc
+export -f lc
+export -f AddCommas
+export -f HR
+export -f ToK
