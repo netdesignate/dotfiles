@@ -59,12 +59,12 @@ function AddCommas(){
 
 function Wake()
 {
-  MAC=F48E3890F0AD
+  MAC=${1:=F48E3890F0AD} # default is "NEST" Windows Desktop
   Broadcast=255.255.255.255
   PortNumber=9
   echo -e $(echo $(printf 'f%.0s' {1..12}; printf "$(echo $MAC | sed 's/[:-]//g')%.0s" {1..16}) | sed -e 's/../\\x&/g') | nc -w1 -u -b $Broadcast $PortNumber
 }
-
+alias Wake_Backups="Wake 002564CA3E5A" # Will wake up the Proxmox Backup Server [PBS]
 
 function cmp.bash.aliases()
 {
