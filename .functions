@@ -66,6 +66,7 @@ function Wake()
 }
 alias Wake_Backups="Wake 002564CA3E5A" # Will wake up the Proxmox Backup Server [PBS]
 alias Wake_Cooee="Wake DA4CD50CA681" # Will wake up the Secondary PVE Server [Cooee]
+alias Wake_Nest="Wake F48E3890F0AD" # Wake NEST - CDM Windows Desktop
 
 function proxmox_nonag()
 {
