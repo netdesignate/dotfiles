@@ -92,8 +92,9 @@ function cmp.bash.aliases()
   mv .bash_aliases $(hostname).bash_aliases;
   printf 'diff ~/.bash_aliases /tmp/$(hostname).bash_aliases\n=============================================\n'
   diff ~/.bash_aliases /tmp/$(hostname).bash_aliases;
+  rm $(hostname).bash_aliases;
 }
-#=================
+
 function bytesToHR()
 {
   local SIZE=$1
@@ -158,6 +159,7 @@ function dpdk_rx()
 }
 
 export -f Wake
+export -f cmp.bash.aliases
 export -f proxmox_nonag
 export -f urldecode
 export -f histgrep
