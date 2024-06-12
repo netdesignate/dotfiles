@@ -16,7 +16,14 @@ grep 'bash_aliases' ~/.bash*  # check if it is in there...
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # add this to your .bashrc
+# ~/.functions is pulled into ~/.bash_aliases ...
 
+# THEN: - just download them with wget
+if [ -f ~/.bash_aliases ]; then
+    mv ~/.bash_aliases ~/.bash_aliases.original
+    cd ~
+    wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
+fi
 # ~/.bash_aliases ...
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -27,13 +34,6 @@ if [ -f ~/.ey_aliases ]; then
     . ~/.ey_aliases
 fi
 
-# ~/.functions is pulled into ~/.bash_aliases ...
-# THEN: - just download them with wget
-if [ -f ~/.bash_aliases ]; then
-    mv ~/.bash_aliases ~/.bash_aliases.original
-    cd ~
-    wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
-fi
 
 if [ -f ~/.bash_logout ]; then
     mv ~/.bash_logout ~/.bash_logout.original
