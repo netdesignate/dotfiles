@@ -6,6 +6,7 @@ alias rlsp="sed 's/^ *//g'"
 alias cd7='cd /var/www/ce7'
 alias cd9='cd /var/www/ce9'
 alias cd10='cd /var/www/ce10'
+alias cdx='cd /var/www/ce10'
 alias composer='composer.2.7.6'
 alias drush12='/var/www/ce10/vendor/drush/drush/drush'
 alias cdce='cd /var/www/cityethics.org'
