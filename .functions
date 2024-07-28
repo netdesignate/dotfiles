@@ -1,6 +1,30 @@
 function myip(){ dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/"//g'; }
 function aptmods(){ apt list --installed | grep $1 | cut -d '/' -f1; }
 
+# drupal updates follow
+# =====================
+function upd-kunda() {
+    if [ "$(whoami)" != "donmc" ]; then
+        echo "Script must be run as user: username"
+        return 255
+    else
+        cd /var/www/kunda.com.au  # or alias "cdk"
+        drush pm-update  
+    fi
+}
+function upd-ce7() {
+    cd /var/www/ce7
+    sudo drush up
+    sudo drush updatedb
+}
+function upd-ce10() {
+    cd /var/www/ce10
+    composer.2.7.6 update drupal/core --with-all-dependencies
+}
+export -f upd-ce7
+export -f upd-ce10
+export -f upd-kunda
+#==================
 urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
 # x="http%3A%2F%2Fstackoverflow.com%2Fsearch%3Fq%3Durldecode%2Bbash"
 # y=$(urldecode "$x")
