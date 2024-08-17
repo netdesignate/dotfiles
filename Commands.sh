@@ -29,12 +29,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# ey related stuff...
-if [ -f ~/.ey_aliases ]; then
-    . ~/.ey_aliases
-fi
-
-
 if [ -f ~/.bash_logout ]; then
     mv ~/.bash_logout ~/.bash_logout.original
     cd ~
