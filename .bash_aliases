@@ -1,4 +1,4 @@
-# OK Adding a Verion: Bash-Aliases-2020-04-12 [Easter 2020]
+# OK Adding a Verion: Bash-Aliases-2024-08-17
 alias bkup_cec='mysqldump -u cecLite -p cecLite > cecLite-$(date +%F-%H%M).sql'
 alias rgrep='find . -type f | grep -i -l $1'
 alias ls1='find . -mtime 0'
@@ -84,8 +84,8 @@ alias unlockWD='sudo ~/wdpassport-utils.py -u'
 # 
 alias bkpT510='sudo tar czf /mnt/mypath/Backup_$(date +"%Y-%m-%d_%H-%M-%S").tar.gz --exclude=/mnt --exclude=/proc --exclude=/sys --exclude=/tmp --exclude=/lost+found'
 
-alias chkpy='                        \
-  printf "python  -V >> "; python -V;       \
+alias chkpy=' \
+  printf "python  -V >> "; python -V;      \
   printf "python2 -V >> "; python2 -V;     \
   printf "python3 -V >> "; python3 -V;'
 
@@ -94,4 +94,3 @@ alias webmin_service_enable='sudo update-rc.d webmin enable'
 alias webmin_service_disable='sudo update-rc.d webmin disable'
 alias webmin_start='sudo service webmin start'
 alias webmin_stop='sudo service webmin stop'
-
