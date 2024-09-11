@@ -1,5 +1,6 @@
 # OK Adding a Verion: Bash-Aliases-2024-08-17
 alias bkup_cec='mysqldump -u cecLite -p cecLite > cecLite-$(date +%F-%H%M).sql'
+alias bkup_kunda='mysqldump -u kunda -p NaD5fn4YTxTwnnpp > kunda.com.au.D7-$(date +%F-%H%M).sql'
 alias rgrep='find . -type f | grep -i -l $1'
 alias ls1='find . -mtime 0'
 alias rlsp="sed 's/^ *//g'"
