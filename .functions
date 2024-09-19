@@ -25,6 +25,7 @@ function upd-ce10() {
         return 255
     else
         cd /var/www/ce10
+        printf "Current Working Directory is: $(pwd)\nBeginning Composer update now...\nRunning \"composer.2.7.6 update \"drupal/core-*\" --with-all-dependencies\"\n\n"
         composer.2.7.6 update "drupal/core-*" --with-all-dependencies
     fi
 }
