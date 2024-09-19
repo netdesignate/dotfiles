@@ -1,3 +1,12 @@
+function get.functions() {
+  if [ -f ~/.functions ]; then
+      mv ~/.functions ~/.functions.original
+      cd ~
+      wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
+      . ~/.functions
+  fi
+}
+
 function myip(){ dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/"//g'; }
 function aptmods(){ apt list --installed | grep $1 | cut -d '/' -f1; }
 
