@@ -16,7 +16,7 @@ function upd-kunda() {
 function upd-ce7() {
     cd /var/www/ce7
     sudo drush up
-    sudo drush updatedb
+    printf "May need to run: \"sudo drush updatedb\"\n"
 }
 
 function upd-ce10() {
