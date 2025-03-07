@@ -22,12 +22,6 @@ function upd-kunda() {
     fi
 }
 
-function upd-ce7() {
-    cd /var/www/ce7
-    sudo drush up
-    printf "May need to run: \"sudo drush updatedb\"\n"
-}
-
 function upd-ce10() {
     if [ "$(whoami)" != "donmc" ]; then
         echo "Script must be run as user: username"
@@ -38,8 +32,6 @@ function upd-ce10() {
         composer.2.7.6 update "drupal/core-*" --with-all-dependencies
     fi
 }
-
-export -f upd-ce7
 export -f upd-ce10
 export -f upd-kunda
 #==================
@@ -65,6 +57,11 @@ function histgrep() {
     shift
   fi
   tac ~/.history | grep "$@" | tail -n "$n_lines"
+}
+
+# 'nocomment' -- Strips whitespace and comments from PHP Code file
+function nocomment() { 
+  grep -v '^\s*//' $1 | grep -v '^\s*#' | grep -v '^\s*/\*' | grep -v '^\s*\*  | grep -v '^\s*\*$' | sed '/\*\//d'|grep -v '^$'; 
 }
 
 function ipchk() {
@@ -205,6 +202,7 @@ export -f cmp.bash.aliases
 export -f proxmox_nonag
 export -f urldecode
 export -f histgrep
+export -f nocomment
 export -f ipchk
 export -f myip
 export -f aptmods
