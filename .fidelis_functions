@@ -83,4 +83,34 @@ function xps_rx()
   done
 }
 
+
+function dpdk_rx()
+{
+  thisHost=$(hostname)
+  interfc=$1
+  interval=30
+  # echo "I/F:bytes:packets:errs"  # Debugging 
+  echo "[dpdk_rx] Tracking interface traffic for $interfc in $interval second intervals:"
+  while true
+  do
+    # grep $interfc /FSS/log/dpdk_stats | awk '{print $1 $2 ":" $3 ":" $4 }' # To debug
+    R1=`grep $interfc /FSS/log/dpdk_stats | awk '{print $2}'`
+    PPS1=`grep $interfc /FSS/log/dpdk_stats | awk '{print $3}'`
+    sleep $interval
+    R2=`grep $interfc /FSS/log/dpdk_stats | awk '{print $2}'`
+    PPS2=`grep $interfc /FSS/log/dpdk_stats | awk '{print $3}'`
+    RBPS=`expr $R2 - $R1`
+    PPS=`expr $PPS2 - $PPS1`
+    RKBPS=`expr $RBPS / 1024`
+    echo -e "[ $(date +'%Y%m%d-%H:%M:%S') $thisHost $interfc RX:$(bytesToHR $RBPS)$(ToK $PPS)]"
+  done
+  
+#  Outputs like this:
+#  $ dpdk_rx eth4
+#  [dpdk_rx] Tracking interface traffic for eth4 in 30 second intervals:
+#  [ 20200113-22:46:05 host1 eth4 RX: 792.13 MBps   1.32 Mpps]
+#  [ 20200113-22:46:35 host1 eth4 RX: 646.82 MBps   1.18 Mpps]
+#  [ 20200113-22:47:05 host1 eth4 RX: 657.65 MBps   1.22 Mpps]
+}
+
 alias tomcat_version="grep -i 'apache tomcat' /FSS/tomcat/logs/tomcat-server.out | tail"
