@@ -1,17 +1,16 @@
-# OK Adding a Verion: Bash-Aliases-2024-08-17
+# OK Adding a Verion: Bash-Aliases-2025-03-07
 alias bkup_cec='mysqldump -u cecLite -p cecLite > cecLite-$(date +%F-%H%M).sql'
 alias bkup_kunda='mysqldump -u kunda -p NaD5fn4YTxTwnnpp > kunda.com.au.D7-$(date +%F-%H%M).sql'
+alias composer='php /usr/local/bin/composer'
 alias rgrep='find . -type f | grep -i -l $1'
 alias ls1='find . -mtime 0'
 alias rlsp="sed 's/^ *//g'"
 alias cd7='cd /var/www/ce7'
 alias cd9='cd /var/www/ce9'
-alias cd10='cd /var/www/ce10'
-alias cdx='cd /var/www/ce10'
-alias composer='composer.2.7.6'
-alias drush12='/var/www/ce10/vendor/drush/drush/drush'
+alias cd10='cd /var/www/cityethics.org'
+alias cdx='cd /var/www/cityethics.org'
 alias cdce='cd /var/www/cityethics.org'
-alias cdj='cd /var/www/jaxbeachtech.com.d8'
+alias cdj='cd /var/www/jaxbeachtech.com'
 alias cdk='cd /var/www/kunda.com.au'
 alias cdkw='cd /var/www/kunda.wp'
 alias cdkwp='cd /var/www/kunda.wp'
@@ -23,8 +22,8 @@ alias fgrep='fgrep --color=auto --exclude=*history*'
 alias grep='grep --color=auto --exclude=*history*'
 alias active='grep -v -e "^$\|^\s*#" '
 alias lsd='ls -al | grep ^d'
-alias wetail='sudo tail -n 200 /var/log/apache2/error.log | less'
-alias wtail='sudo tail -n 200 /var/log/apache2/access.log | less'
+alias wetail='sudo tail -Fn 20 /var/log/nginx/error.log | less'
+alias wtail='sudo tail -Fn 20 /var/log/nginx/access.log | less'
 alias df='df -h'
 alias dir='ls --color=auto --format=vertical'
 alias du='du -h'
@@ -61,6 +60,7 @@ export HISTTIMEFORMAT="%y-%m-%d %T "
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000
 alias hg='histgrep' 
+export PATH="$PATH:./vendor/bin"
 
 # change default editor to vi:
 set -o vi
