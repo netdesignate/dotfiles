@@ -107,23 +107,6 @@ alias Wake_Backups="Wake 002564CA3E5A" # Will wake up the Proxmox Backup Server 
 alias Wake_Cooee="Wake DA4CD50CA681" # Will wake up the Secondary PVE Server [Cooee]
 alias Wake_Nest="Wake F48E3890F0AD" # Wake NEST - CDM Windows Desktop
 
-function proxmox_nonag()
-{
-  pve_file="/usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js"
-  if [ ! -f ${pve_file} ]; then
-    printf "Proxmox js file not found.\nAre we running this on a Proxmox 7.x+ Server ?\n"
-    printf "\n\tERROR - Not found: ${pve_file}\n"
-    exit 1
-  fi
-  if sudo true; then
-    echo "Sudo is active - removing Proxmox NAG...";
-    sudo sed -Ezi.bak "s/(Ext.Msg.show\(\{\s+title: gettext\('No valid sub)/void\(\{ \/\/\1/g" ${pve_file} && sudo systemctl restart pveproxy.service
-  else
-    echo "Sorry - this needs to be run with sudo active."
-    exit 1
-  fi
-}
-
 function cmp.bash.aliases()
 {
   cd /tmp;
@@ -199,7 +182,6 @@ function dpdk_rx()
 
 export -f Wake
 export -f cmp.bash.aliases
-export -f proxmox_nonag
 export -f urldecode
 export -f histgrep
 export -f nocomment
