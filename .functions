@@ -112,7 +112,7 @@ function cmp.bash.aliases()
   cd /tmp;
   wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
   mv .bash_aliases $(hostname).bash_aliases;
-  printf 'diff ~/.bash_aliases /tmp/$(hostname).bash_aliases\n=============================================\n'
+  printf "diff ~/.bash_aliases /tmp/$(hostname).bash_aliases\n=============================================\n"
   diff ~/.bash_aliases /tmp/$(hostname).bash_aliases;
   rm $(hostname).bash_aliases;
 }
