@@ -61,7 +61,14 @@ function histgrep() {
 
 # 'nocomment' -- Strips whitespace and comments from PHP Code file
 function nocomment() { 
-  grep -v '^\s*//' $1 | grep -v '^\s*#' | grep -v '^\s*/\*' | grep -v '^\s*\*'  | grep -v '^\s*\*$' | sed '/\*\//d'|grep -v '^$'; 
+  grep -v '^\s*//' $1 \
+    | grep -v '^\s*#' \
+    | grep -v '^\s*/\*' \
+    | grep -v '^\s*\* ' \
+    | grep -v '^\s*\*$' \
+    | grep -v '^\s*;$' \
+    | sed '/\*\//d' \
+    | grep -v '^$'; 
 }
 
 function ipchk() {
