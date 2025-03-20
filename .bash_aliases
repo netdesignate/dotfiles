@@ -68,6 +68,7 @@ export EDITOR='vi'
 export VISUAL='vi'
 
 if [ -f ~/.functions ]; then
+    printf "Executing \"~/.functions\"\n"
   . ~/.functions
 fi
 
