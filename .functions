@@ -7,6 +7,15 @@ function get.functions() {
   fi
 }
 
+function get.aliases() {
+  if [ -f ~/.bash_aliases ]; then
+    cp ~/.bash_aliases ~/.bash_aliases.backup
+    cd ~
+    wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
+    source ~/.bash_aliases
+  fi
+}
+
 function myip(){ dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/"//g'; }
 function aptmods(){ apt list --installed | grep $1 | cut -d '/' -f1; }
 
@@ -24,6 +33,7 @@ function upd-ce() {
 }
 export -f upd-ce
 export -f get.functions
+export -f get.aliases
 #==================
 urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
 # x="http%3A%2F%2Fstackoverflow.com%2Fsearch%3Fq%3Durldecode%2Bbash"
