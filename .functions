@@ -41,11 +41,11 @@ function lc() { echo "$@"|awk '{print tolower($0)}'; }
 
 function histgrep() {
   local n_lines=20
-  if [[ "$1" =~ ^[0-9]*$ ]]; then
+  if [[ "$1" =~ ^[0-9]+$ ]]; then
     n_lines="$1"
     shift
   fi
-  tac ~/.history | grep "$@" | tail -n "$n_lines"
+  history | grep "$@" | tail -n "$n_lines"
 }
 
 # 'nocomment' -- Strips whitespace and comments from PHP Code file
