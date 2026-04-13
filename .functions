@@ -12,28 +12,17 @@ function aptmods(){ apt list --installed | grep $1 | cut -d '/' -f1; }
 
 # drupal updates follow
 # =====================
-function upd-kunda() {
+function upd-ce() {
     if [ "$(whoami)" != "donmc" ]; then
         echo "Script must be run as user: username"
         return 255
     else
-        cd /var/www/kunda.com.au  # or alias "cdk"
-        drush pm-update  
-    fi
-}
-
-function upd-ce10() {
-    if [ "$(whoami)" != "donmc" ]; then
-        echo "Script must be run as user: username"
-        return 255
-    else
-        cd /var/www/ce10
+        cd /var/www/cityethics.org
         printf "Current Working Directory is: $(pwd)\nBeginning Composer update now...\nRunning \"composer.2.7.6 update \"drupal/core-*\" --with-all-dependencies\"\n\n"
-        composer.2.7.6 update "drupal/core-*" --with-all-dependencies
+        composer.2.7.6 update "drupal/*" --with-all-dependencies
     fi
 }
-export -f upd-ce10
-export -f upd-kunda
+export -f upd-ce
 #==================
 urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
 # x="http%3A%2F%2Fstackoverflow.com%2Fsearch%3Fq%3Durldecode%2Bbash"
