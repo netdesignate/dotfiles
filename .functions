@@ -183,3 +183,39 @@ export -f lc
 export -f AddCommas
 export -f HR
 export -f ToK
+
+# Adding users to "research.cityethics.org" with this function:
+invite_research_user() {
+    if [ "$(hostname)" != "moruya" ]; then
+        echo "Error: this command only runs on moruya."
+        return 1
+    fi
+    if [ -z "$1" ]; then
+        echo "Usage: invite_user email@example.com [admin]"
+        return 1
+    fi
+
+    # Check sudo credentials are active 4m~@~T fails if not yet authenticated
+    if ! sudo -v 2>/dev/null; then
+        echo "Error: sudo access required. Run 'sudo -v' first to authenticate."
+        return 1
+    fi
+
+    local EMAIL="$1"
+    local ROLE="${2:-user}"
+    local ORIG_DIR="$(pwd)"
+
+    cd /var/www/research.cityethics.org/api || return 1
+    source .venv/bin/activate
+
+    # Read secrets from the protected env file
+    export AUTH_SECRET_KEY=$(sudo grep AUTH_SECRET_KEY /etc/ethicsearch.env | cut -d= -f2)
+    export AUTH_BASE_URL=https://research.cityethics.org
+
+    python3 auth.py invite "$EMAIL" --role "$ROLE"
+
+    deactivate
+    cd "$ORIG_DIR"
+}
+
+export -f invite_research_user
