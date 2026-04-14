@@ -44,15 +44,19 @@ alias strcmp='$ [[ "str1" == "str2" ]]  && echo "Equal" || echo "Not equal"'
 # Setup History the RIGHT way…
 shopt -o noclobber
 shopt -s cmdhist
+
+# Bash history
 shopt -s histappend
-export PROMPT_COMMAND="history -a; history -n"
-export HISTIGNORE="&:[bf]g:exit:fortune:clear:cl:history:dict *:which *:shred *:man *:apropos rm *:mplayer *:source *:. *:gojo *:mutt"
-export HISTCONTROL=erasedups:ignoreboth
-export HISTTIMEFORMAT="%y-%m-%d %T "
-export HISTFILESIZE=1000000000
+export HISTFILE="$HOME/.bash_history"
 export HISTSIZE=1000000
+export HISTFILESIZE=1000000
+export HISTTIMEFORMAT="%F %T "
+export HISTCONTROL=ignoredups:erasedups
+export HISTIGNORE="&:ls:ll:la:clear:pwd:exit"
+
+# Sync history across shells
+export PROMPT_COMMAND='history -a; history -n'
 alias hg='histgrep' 
-export PATH="$PATH:./vendor/bin"
 
 # change default editor to vi:
 set -o vi
