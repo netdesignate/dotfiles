@@ -1,8 +1,8 @@
 function get.functions() {
   if [ -f ~/.functions ]; then
-      mv ~/.functions ~/.functions.original
+      cp ~/.functions ~/.functions.backup
       cd ~
-      wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
+      wget -O ~/.functions https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
       . ~/.functions
   fi
 }
@@ -11,7 +11,7 @@ function get.aliases() {
   if [ -f ~/.bash_aliases ]; then
     cp ~/.bash_aliases ~/.bash_aliases.backup
     cd ~
-    wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
+    wget -O ~/.bash_aliases https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
     source ~/.bash_aliases
   fi
 }
