@@ -219,3 +219,20 @@ invite_research_user() {
 }
 
 export -f invite_research_user
+
+# Push a single static HTML file to jaxbeachtech.com webroot
+# Usage: jbt-deploy cpu-performance-2025.html
+jbt-deploy() {
+  rsync -avz --progress \
+    "/srv/storage/DRM/dev/jaxbeachtech.com/${1}" \
+    "donmc@moruya:/var/www/jaxbeachtech.com/${1}"
+}
+
+# Push ALL static html files in the dev folder to live
+jbt-deploy-all() {
+  rsync -avz --progress --include="*.html" --exclude="*" \
+    /srv/storage/DRM/dev/jaxbeachtech.com/ \
+    donmc@moruya:/var/www/jaxbeachtech.com/
+}
+
+
