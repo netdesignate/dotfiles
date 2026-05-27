@@ -1,4 +1,5 @@
 # OK Adding a Verion: Bash-Aliases-2025-03-07
+alias vi='vim'
 alias bkup_cec='mysqldump -u cecLite -p cecLite > cecLite-$(date +%F-%H%M).sql'
 alias bkup_kunda='mysqldump -u kunda -p NaD5fn4YTxTwnnpp > kunda.com.au.D7-$(date +%F-%H%M).sql'
 alias composer='php /usr/local/bin/composer'
