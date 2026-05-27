@@ -44,7 +44,6 @@ alias cdduval='cd /srv/storage/DRM/Duval2027'
 alias deploy_duval2027='/srv/storage/DRM/Duval2027/deploy_duval2027.sh'
 
 # Setup History the RIGHT way…
-shopt -o noclobber
 shopt -s cmdhist
 
 # Bash history
