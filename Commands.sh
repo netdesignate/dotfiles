@@ -42,9 +42,11 @@ if [ -f ~/.functions ]; then
 fi
 
 cd ~; rm -rf ~/.bash_aliases* ~/.functions* ~/.bash_logout*
-wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
-wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
-wget https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
+# Re-download fresh (force overwrite)
+wget -O ~/.bash_aliases https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_aliases
+wget -O ~/.functions https://raw.githubusercontent.com/netdesignate/dotfiles/master/.functions
+wget -O ~/.bash_logout https://raw.githubusercontent.com/netdesignate/dotfiles/master/.bash_logout
+# Source to apply
 . ~/.bashrc
 
 # great cmd below to export (from powershell) full date time stamps into a csv for display in excel.
