@@ -44,6 +44,7 @@ alias cdduval='cd /srv/storage/DRM/'
 alias cdlrh='cd /srv/storage/DRM/dev/jaxbeachtech.com/lrh-search-v2/'
 alias cdsecsearch='cd /srv/storage/CDM/CLAUDE/research.cityethics.org'
 alias deploy_duval2027='/srv/storage/DRM/Duval2027/deploy_duval2027.sh'
+alias venv='source .venv/bin/activate'
 
 # Setup History the RIGHT way…
 shopt -s cmdhist
