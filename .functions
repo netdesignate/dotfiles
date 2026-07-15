@@ -6,6 +6,54 @@ jbt-deploy() {
     "donmc@moruya:/var/www/jaxbeachtech.com/${1}"
 }
 
+newalias() {
+  local name="$1"
+  local cmd="$2"
+  local dotfiles_dir="$HOME/dotfiles"           # confirmed local clone path on hobbit
+  local alias_file="$HOME/.bash_aliases"        # the file bash actually sources
+
+  if [[ -z "$name" || -z "$cmd" ]]; then
+    echo "Usage: newalias <name> '<command>'"
+    return 1
+  fi
+
+  # Resolve whether ~/.bash_aliases is a symlink into the repo
+  local target_file repo_file
+  if [[ -L "$alias_file" ]]; then
+    target_file="$(readlink -f "$alias_file")"
+  else
+    target_file="$alias_file"
+  fi
+  repo_file="$dotfiles_dir/.bash_aliases"
+
+  # Dedup check
+  if grep -q "^alias $name=" "$target_file" 2>/dev/null; then
+    echo "Alias '$name' already exists in $target_file — not adding a duplicate."
+    return 1
+  fi
+
+  # 1. Activate immediately
+  alias "$name"="$cmd"
+
+  # 2. Append to whichever file is the real one on disk
+  echo "alias $name='$cmd'" >> "$target_file"
+
+  # 3. If target_file isn't already inside the repo, also mirror it there
+  if [[ "$target_file" != "$repo_file" ]]; then
+    echo "alias $name='$cmd'" >> "$repo_file"
+  fi
+
+  # 4. Commit and push from inside the repo
+  (
+    cd "$dotfiles_dir" || return 1
+    git add .bash_aliases
+    git commit -m "Add alias: $name"
+    git push
+  )
+
+  echo "Alias '$name' added, activated, committed, and pushed."
+}
+
 # Push ALL static html files in the dev folder to live
 jbt-deploy-all() {
   rsync -avz --progress --include="*.html" --exclude="*" \
