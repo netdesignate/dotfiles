@@ -1,8 +1,5 @@
 # OK Adding a Verion: Bash-Aliases-2025-03-07
 alias vi='vim'
-alias bkup_cec='mysqldump -u cecLite -p cecLite > cecLite-$(date +%F-%H%M).sql'
-alias bkup_kunda='mysqldump -u kunda -p NaD5fn4YTxTwnnpp > kunda.com.au.D7-$(date +%F-%H%M).sql'
-alias composer='php /usr/local/bin/composer'
 alias rgrep='find . -type f | grep -i -l $1'
 alias ls1='find . -mtime 0'
 alias rlsp="sed 's/^ *//g'"
@@ -46,10 +43,9 @@ alias cdsecsearch='cd /srv/storage/CDM/CLAUDE/research.cityethics.org'
 alias deploy_duval2027='/srv/storage/DRM/Duval2027/deploy_duval2027.sh'
 alias venv='source .venv/bin/activate'
 [ -f /etc/lrh_search.env ] && export ANTHROPIC_API_KEY=$(grep ANTHROPIC_API_KEY /etc/lrh_search.env | cut -d= -f2)
-
+#############################
 # Setup History the RIGHT way…
 shopt -s cmdhist
-
 # Bash history
 shopt -s histappend
 export HISTFILE="$HOME/.bash_history"
@@ -58,7 +54,7 @@ export HISTFILESIZE=1000000
 export HISTTIMEFORMAT="%F %T "
 export HISTCONTROL=ignoredups:erasedups
 export HISTIGNORE="&:ls:ll:la:clear:pwd:exit"
-
+#############################
 # Sync history across shells
 export PROMPT_COMMAND='history -a; history -n'
 alias hg='histgrep' 
