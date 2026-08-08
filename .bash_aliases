@@ -100,3 +100,4 @@ alias lrhv2='cd /opt/lrh_search_v2 && source .venv/bin/activate && export ANTHRO
 alias cdlrhv='cd /opt/lrh_search_v2 && source .venv/bin/activate'
 alias lrhv3='cd /opt/lrh_search_v3 && source .venv/bin/activate && export ANTHROPIC_API_KEY="$ANTHROPIC_API_KEY_V3"'
 alias claude='TERM=xterm-256color claude'
+alias cdtech='cd /srv/storage/Shared/LRH/LRH/REFORM/Tech/'
