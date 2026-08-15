@@ -9,8 +9,8 @@ jbt-deploy() {
 newalias() {
   local name="$1"
   local cmd="$2"
-  local dotfiles_dir="$HOME/dotfiles"           # confirmed local clone path on hobbit
-  local alias_file="$HOME/.bash_aliases"        # the file bash actually sources
+  local dotfiles_dir="$HOME/dotfiles"
+  local alias_file="$HOME/.bash_aliases"
 
   if [[ -z "$name" || -z "$cmd" ]]; then
     echo "Usage: newalias <name> '<command>'"
@@ -26,32 +26,56 @@ newalias() {
   fi
   repo_file="$dotfiles_dir/.bash_aliases"
 
-  # Dedup check
+  # If alias already exists, remove the old line first (overwrite behavior)
   if grep -q "^alias $name=" "$target_file" 2>/dev/null; then
-    echo "Alias '$name' already exists in $target_file — not adding a duplicate."
-    return 1
+    echo "Alias '$name' already exists — overwriting."
+    sed -i "/^alias $name=/d" "$target_file"
+    if [[ "$target_file" != "$repo_file" && -f "$repo_file" ]]; then
+      sed -i "/^alias $name=/d" "$repo_file"
+    fi
   fi
 
-  # 1. Activate immediately
+  # 1. Activate immediately (unalias first in case shell has old one cached)
+  unalias "$name" 2>/dev/null
   alias "$name"="$cmd"
 
-  # 2. Append to whichever file is the real one on disk
+  # 2. Append the new/updated version
   echo "alias $name='$cmd'" >> "$target_file"
 
-  # 3. If target_file isn't already inside the repo, also mirror it there
+  # 3. Mirror to repo file if it's a separate path
   if [[ "$target_file" != "$repo_file" ]]; then
     echo "alias $name='$cmd'" >> "$repo_file"
   fi
 
-  # 4. Commit and push from inside the repo
+  # 4. Commit and push, with clean success/failure reporting
+  local git_ok=1
   (
-    cd "$dotfiles_dir" || return 1
-    git add .bash_aliases
-    git commit -m "Add alias: $name"
-    git push
-  )
+    cd "$dotfiles_dir" || exit 1
 
-  echo "Alias '$name' added, activated, committed, and pushed."
+    git add .bash_aliases
+
+    # Nothing to commit is not a failure - just means repo file was already up to date
+    if git diff --cached --quiet; then
+      echo "Nothing new to commit (repo copy already up to date)."
+    else
+      if ! git commit -m "Update alias: $name"; then
+        echo "WARNING: git commit failed."
+        exit 1
+      fi
+    fi
+
+    if ! git push; then
+      echo "WARNING: git push failed — commit is local only."
+      exit 1
+    fi
+  )
+  git_ok=$?
+
+  if [[ $git_ok -eq 0 ]]; then
+    echo "Alias '$name' set, activated, committed, and pushed."
+  else
+    echo "Alias '$name' set and activated locally, but commit/push had issues — check 'git status' in $dotfiles_dir."
+  fi
 }
 
 # Push ALL static html files in the dev folder to live
