@@ -102,3 +102,4 @@ alias lrhv3='cd /opt/lrh_search_v3 && source .venv/bin/activate && export ANTHRO
 alias claude='TERM=xterm-256color claude'
 alias cdtech='cd /srv/storage/Shared/LRH/LRH/REFORM/Tech/'
 alias cdsec='cd /srv/storage/CDM/CLAUDE/research.cityethics.org/'
+alias alias='picker=cd /opt/image_picker && source .venv/bin/activate'
